@@ -1,0 +1,166 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
+#include <stdio.h>
+
+using namespace std;
+void deletefiles();
+
+int main()
+{
+    system("title Anon1mus project-Teamspeak ip: ts.gamebaitercrew.tk");
+    system("cls");
+    string pass2,uname2;
+    string uname,pass;
+    string pass1 = "primo";
+    int scelta;
+    fstream s("pass.txt", ios::app);
+
+    cout<<"1)Login" << endl;
+    cout<<"2)Register" << endl;
+    cout<<"3)Show all user" << endl;
+    cout<<"4)Delate All User" << endl;
+    cout<<"\nChoice: ";
+    cin>>scelta;
+    switch(scelta){
+    case 1:
+        {
+            system("cls");
+        int try2 = 0;
+        while((try2==0)){
+                try2=1;
+
+        cout<<"User name: ";
+        cin>>uname2;
+        cout<<"\nPassword: ";
+        cin>>pass2;
+        ifstream s("pass.txt");
+        while(s>>uname>>pass){
+
+
+            if(uname2==uname && pass2 == pass){
+                cout<<"joined!!";
+                system("pause");
+                system("cls");
+                return main();
+            }
+            else{
+                try2 = 0;
+            }
+            if(uname2==uname && pass2 != pass){
+                    int try1=3;
+                cout<<"Wrong password! try again" << endl;
+
+            while(!(pass2==pass || try1 == 0)){
+                cout<<"\nPassword "<<try1<< " attempts: " ;
+                cin>>pass2;
+                try1--;
+
+
+            }
+            if(pass2!=pass){
+                cout<<"Wrong password";
+
+            }
+
+            if(pass2==pass){
+                cout<<"Joined!";
+                system("pause");
+                system("cls");
+                return main();
+            }
+            system("pause");
+            return main();
+
+            }
+            if(uname2!=uname){
+                system("cls");
+                    cout<<"no user with that username found\n";
+                system("pause");
+                main();
+                            }
+
+
+            }
+        }
+        cout<<"\nNo user available\n";
+        system("pause");
+        return main();
+        break;
+        }
+
+
+    case 2:
+        {
+            system("cls");
+            cout<<"Username: ";
+            cin>>uname;
+            cout<<"\nPassword: ";
+            cin>>pass;
+            s<<uname<<" "<<pass << "\n";
+            s.close();
+            system("pause");
+            system("cls");
+            return main();
+            break;
+        }
+
+    case 3:
+        {
+            system("cls");
+            cout<<"here are all the user" << endl;
+            cout << "Username" << endl;
+            cout << "*********\n";
+            ifstream s("pass.txt");
+            while(s>>uname>>pass){
+                    cout <<"  "<< uname << "\n";
+
+            }
+            cout<<"\n";
+    system ("pause");
+    cin.get();
+     main();
+
+            break;
+        }
+    case 4:{
+        deletefiles();
+
+    }
+    default:
+        {
+
+
+        system("cls");
+        return main();
+        }
+
+    }
+}
+void deletefiles(){
+    system("cls");
+     string decision;
+     cout << "\nAre u sure?[y/n]" << endl;
+     cout<<"\n\nChoice: ";
+     cin >> decision;
+    while(!(decision=="y" || decision=="n")){
+        cout<<"Enter a possible answer [y] or [n]: ";
+        cin>>decision;
+    }
+     if (decision == "y"){
+     ofstream s("pass.txt");
+     system("cls");
+     cout << "File successfully deleted" <<"\n"<< endl;
+     system("pause");
+     s.close();
+     system("cls");
+     main();
+     }
+     else{
+            system("cls");
+          main();
+
+          }
+
+}
